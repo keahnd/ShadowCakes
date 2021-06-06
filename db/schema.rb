@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_071738) do
+ActiveRecord::Schema.define(version: 2021_06_06_100950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 2021_06_06_071738) do
     t.boolean "mult_size", default: false
     t.text "sizes", default: [], array: true
     t.decimal "priceDiff", default: [], array: true
+    t.text "feeds", default: ""
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 

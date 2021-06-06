@@ -1,8 +1,5 @@
 <div class = "row">
 	<% @cats.each do |cat| %>
-		<% if cat.products.where(featured: true).first.image.attached? %>
-			<% image_tag(cat.products.where(featured: true).first.image, class: "img-fluid") %>
-		<% end %>
 
 		<div class = "col-12">
 			<br/>
