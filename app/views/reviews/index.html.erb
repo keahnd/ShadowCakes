@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<div class = "reviewsPage">
+
+  <h1>Reviews</h1>
+
+  <% @products.each do |product| %>
+    <% if product.reviews.count >= 1 %>
+      <div class = 'product-review-container'>
+        <h2 class="review-title"> <%= product.name %> </h2>
+        <div class = "product-image">
+          <img class = "contain" src="/<%= product.name%>.jpg" class="img-thumbnail img-responsive img-fluid">
+        </div>
+
+        <%= render product.reviews %>
+
+
+      </div>
+
+    <%end%>
+      
+  <%end%>
+
+  <br>
+
+  <%= link_to 'New Review', new_review_path, class:"btn btn-dark" %>
+</div>

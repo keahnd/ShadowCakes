@@ -1,0 +1,33 @@
+<div class = "col-2">
+	<h5 class="link-container">
+		<%= link_to "Home", root_path, class:"link #{@page == 'home' ? 'active' : ''}" %>
+	</h5>
+
+	<h5 class="link-container">
+		<%= link_to "Menu", menu_path, class:"link #{@page == 'menu' ? 'active' : ''}" %>
+	</h5>
+
+	<h5 class="link-container">
+		<%= link_to "Cart", cart_path, class:"link #{@page == 'cart' ? 'active' : ''}" %>
+	</h5>
+
+	<h5 class="link-container">
+		<%= link_to "More Info", info_path, class:"link #{@page == 'info' ? 'active' : ''}" %>
+	</h5>
+
+	<h5 class="link-container">
+		<%= link_to "Reviews", reviews_path, class:"link #{@page == 'reviews' ? 'active' : ''}" %>
+	</h5>
+
+	<% if user_signed_in? && !current_user.admin? %>
+		<h5 class="link-container">
+			<%= link_to "User Profile", user_path, class:"link #{@page == 'user' ? 'active' : ''}" %>
+		</h5>
+	<%end%>
+
+	<% if user_signed_in? && current_user.admin? %>
+		<h5 class="link-container">
+			<%= link_to "Admin Dashboard", admin_path, class:"link #{@page == 'admin' ? 'active' : ''}" %>
+		</h5>
+	<%end%>
+</div>

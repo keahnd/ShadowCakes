@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+	<% if current_user.admin? %>
+
+		<h1>Editing Category</h1>
+
+		<%= render 'form', category: @category %>
+
+		<%= link_to 'Show', @category %> |
+		<%= link_to 'Back', categories_path %>
+
+	<%end%>
+
+<% else %>
+
+	<%= NOT AUTHORIZED TO VIEW THIS PAGE %>
+
+
+<%end%>

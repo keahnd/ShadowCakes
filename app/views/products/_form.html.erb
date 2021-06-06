@@ -1,0 +1,67 @@
+<%= form_with(model: product) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gluten_free %>
+    <%= form.check_box :gluten_free %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dairy_free %>
+    <%= form.check_box :dairy_free %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contains_peanuts %>
+    <%= form.check_box :contains_peanuts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sold_out %>
+    <%= form.check_box :sold_out %>
+  </div>
+
+  <div class="field">
+    <%= form.label :featured %>
+    <%= form.check_box :featured %>
+  </div>
+
+  <div class = "field">
+    <%= form.label :category %>
+    <%= form.select :category_id, options_from_collection_for_select(Category.all, :id, :heading, @product.category.id) %>
+  </div>
+
+  <div class = "field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

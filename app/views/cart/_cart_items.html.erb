@@ -1,0 +1,39 @@
+<div class="cart-container">
+	<% if !(@order_items.nil?) %>
+		<table class = "table">
+	    	<thead>
+		        <tr>
+		          <th>Product Name</th>
+		          <th>Price</th>
+		          <th>Quantity</th>
+		          <th>Item Subtotal</th>
+		        </tr>
+	    	</thead>
+	      	<tbody>
+				<% @order_items.each do |item| %>
+					<tr>
+						<td><%= item.product.name %> </td>
+						<td><%= number_to_currency(item.product.price) %> </td>
+						<td>
+							<%= form_for item, remote: true do |f| %>
+								<%= f.hidden_field :product_id, value: item.product.id %>
+								<%= f.number_field :quantity, value: item.quantity.to_i %>
+								<%= f.submit "Update Cart", class:"btn btn-secondary" %>
+								<%= link_to "Remove Item", item, remote: true, method: :delete, class:"btn btn-danger" %>
+							<% end %>
+						</td>
+
+						<td>Subtotal: <%= number_to_currency(item.total) %> </td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+
+		<div class="order-total-container">
+			<h2>Current Order Total: <%= number_to_currency(current_order.subtotal) %> </h2>
+
+			<%= link_to 'Confirm Order', checkout_path, class:"btn btn-primary" %>
+			<br/>
+		</div>
+	<% end %>
+</div>

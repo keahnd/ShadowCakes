@@ -1,0 +1,34 @@
+<div class="admin-table">  
+
+  <h1> Admin Page </h1>
+
+  <table class="table stripped-rows">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Feature</th>
+        <th scope="col">View</th>
+        <th scope="col">Add New</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Products</td>
+        <td><%= link_to 'View Products', products_path %></td>
+        <td><%= link_to 'New Product', new_product_path %></td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Categories</td>
+        <td><%= link_to 'View Categories', categories_path %></td>
+        <td><%= link_to 'New Product', new_category_path %></td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Orders Received</td>
+        <td><%= link_to 'View Orders', orders_path %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

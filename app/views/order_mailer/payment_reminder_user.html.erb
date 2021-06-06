@@ -1,0 +1,67 @@
+<head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Please complete the payment for your order.
+      If you do not complete this payment within the next 12 hours. Your order will be cancelled.</p>
+    <p>
+    Order details<br>
+    --------------------------
+    </p>
+    <p>Email: <%= @user.email %>
+    </p>
+    <p>
+    Message:<br>
+    ----------
+    </p>
+    <p>
+        The Order:
+        <table class = "table">
+      <thead>
+        <tr>
+          <th>Order Id</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Total Cost</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+            <td><%= @order.id %></td>
+            <td><%= @order.first_name %> <%= @order.last_name %></td>
+            <td><%= @order.status%></td>
+            <td><%= @order.subtotal%></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class = "table">
+        <thead>
+            <tr>
+              <th>Product</th>
+              <th>Unit Price</th>
+              <th>Quantity</th>
+              <th>Item Total</th>
+              <th colspan="3"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @order_items.each do |item| %>
+            <tr>
+                <td><%= item.product.name %> </td>
+                <td><%= item.product.price %> </td>
+                <td><%= item.quantity %> </td>
+                <td><%= item.total %> </td>
+
+            <% end %>
+            </tr>
+          </tbody>
+        </table>
+            
+
+
+        <h2>Current Order Total: <%= @order.subtotal %> </h2>
+    </p>
+  </body>

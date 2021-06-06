@@ -1,0 +1,119 @@
+* {
+	font-family: 'Alegreya', serif;
+}
+.page-container {
+	margin: 0px;
+	padding: 0px;
+	max-width: 100%
+}
+
+.title-card {
+	background-color: #EF798A;
+}
+
+.reviewsPage {
+	box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
+	background-color: #6F8AB7;
+	width: 100%;
+	padding: 2em;
+}
+
+.title-text {
+	color: #D14081;
+	text-align: center;
+	font-size: 5em;
+	margin: 0;
+}
+
+.home-page {
+	width: 100vw;
+	height: 100vh;
+	background-image: url("/logo.png");
+	background-size: 100% 100%;
+}
+
+.admin-page {
+	width: 100vw;
+	height: 100vh;
+	background-size: 100% 100%;
+}
+
+.cart-page {
+	width: 100%;
+	height: 100%;
+	background-image: url("/test-image.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.menu-page {
+	width: 100%;
+	height: 100%;
+	background-image: url("/test-image.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.products-page {
+	width: 100%;
+	height: 100%;
+	background-image: url("/test-image.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.info-container {
+	box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
+	background-color: #D14081;
+	width: 100%;
+	padding: 2em;
+}
+
+.menu-container {
+	box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
+	background-color: #D14081;
+	width: 100%;
+	padding: 2em;
+}
+
+.links-container {
+	background-color: #615D6C;
+	width: 100%;
+	padding: 2em;
+}
+
+.info-page {
+	width: 100%;
+	height: 100%;
+	background-image: url("/test-image.jpg");
+	background-size: 100% 100%;
+}
+
+.reviews-page {
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+	background-image: url("/test-image.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.link-container {
+	padding-left: 1em;
+	padding-top: 0.25em;
+	.link{
+		color: #717EC3;
+	}
+	.active {
+		color: #00A7E1;
+	}
+	.link:active{
+		color: #8CC7A1;
+	}
+}

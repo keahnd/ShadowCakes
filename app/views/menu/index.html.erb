@@ -1,0 +1,18 @@
+<h1>Menu</h1>
+
+<div id="cart">
+  <%= render 'cart/cart'%>
+</div>
+
+<div class="menu-container">
+	<div id = "menu-products-container">
+		<%= render 'menu/products' %>
+	</div>
+</div>
+
+
+<script>
+	function clickSubmit() {
+		$("#search_submit").trigger("click");
+	}
+</script>

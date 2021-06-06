@@ -1,0 +1,45 @@
+<div class="card">
+
+  <%= form_with(model: review) do |form| %>
+    <% if review.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+        <ul>
+          <% review.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="card-body">
+
+      <div class = "form-group">
+        <%= form.label :product_id %>
+        <%= form.select :product_id, options_from_collection_for_select(Product.all, :id, :name, @review.product_id), {}, {class: "form form-group form-select"} %>
+      </div><br/>
+
+      <div class="form-range">
+        <%= form.label :rating %>
+        <input type="range" name="rangeInput" min="0" max="5" step="0.5" onchange="updateTextInput(this.value);">
+        <%= form.number_field :rating, step: 0.5, id: "ratingField"%>
+      </div><br/>
+
+      <div class="form-group">
+        <%= form.label :comment %>
+        <%= form.text_area :comment, style: 'width:100%;', rows: 5 %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  function updateTextInput(val) {
+            document.getElementById('ratingField').value = val;
+          }
+</script>

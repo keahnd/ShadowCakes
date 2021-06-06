@@ -1,0 +1,13 @@
+<% if current_order.order_items.size > 0 %>
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+	  Order Addded to Cart!
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+<%else%>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  <p> Please note we have no delivery services. All orders are pick up only.<br/> 
+	  We are located in Kerrisdale. </p>
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+<% end %>
+<%= link_to "Cart has #{current_order.order_items.size} items with a value of $#{current_order.subtotal}", cart_path %>

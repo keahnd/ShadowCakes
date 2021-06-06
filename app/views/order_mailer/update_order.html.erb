@@ -1,0 +1,70 @@
+<head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Your Order has been Updated!</p>
+    <p>
+    Order details<br>
+    --------------------------
+    </p>
+    <p>
+        <% if @order.status == 'Ready for Pick Up' %>
+            <h2> Your Order is Ready! Please come collect at <%= @order.pick_up_time.hour %>:<%= @order.pick_up_time.min %>. At the following address:
+            2302 West 33rd Ave, Vancouver BC V6M 1C3</h2>
+        <%end%>
+    </p>
+    <p>
+    Message:<br>
+    ----------
+    </p>
+    <p>
+        Your Order:
+        <table class = "table">
+      <thead>
+        <tr>
+          <th>Order Id</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Total Cost</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+            <td><%= @order.id %></td>
+            <td><%= @order.first_name %> <%= @order.last_name %></td>
+            <td><%= @order.status%></td>
+            <td><%= @order.subtotal%></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class = "table">
+        <thead>
+            <tr>
+              <th>Product</th>
+              <th>Unit Price</th>
+              <th>Quantity</th>
+              <th>Item Total</th>
+              <th colspan="3"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @order_items.each do |item| %>
+            <tr>
+                <td><%= item.product.name %> </td>
+                <td><%= item.product.price %> </td>
+                <td><%= item.quantity %> </td>
+                <td><%= item.total %> </td>
+
+            <% end %>
+            </tr>
+          </tbody>
+        </table>
+            
+
+
+        <h2>Current Order Total: <%= @order.subtotal %> </h2>
+    </p>
+  </body>

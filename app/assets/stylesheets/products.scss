@@ -1,0 +1,38 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+* {
+	font-family: 'Alegreya', serif;
+}
+
+.left {float:left;width:420px;}
+.right {float:left;margin:20px;width:215px;}
+
+.product-name{
+	color: #000;
+	text-align: center;
+	font-size: 3em;
+	text-transform: uppercase;
+}
+
+.products-page {
+	width: 100%;
+	height: 100%;
+	background-image: url("/test-image.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.product-price{
+	text-align: center;
+	margin: 5px;
+	font-size: 1.5em;
+}
+
+.review-title{
+	text-align: center;
+}
+
+.product-description-text{
+	font-size: 1em;
+}

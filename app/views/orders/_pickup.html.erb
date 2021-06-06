@@ -1,0 +1,30 @@
+<h1>Adding Pick Up Time</h1>
+
+	<%= form_with(model: order) do |form| %>
+	  	<% if order.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+		      <ul>
+		        <% order.errors.each do |error| %>
+		          <li><%= error.full_message %></li>
+		        <% end %>
+		      </ul>
+		    </div>
+	  	<% end %>
+
+		<div class="field">
+		    <%= form.label :pick_up_date%>
+		    <%= form.date_field :pick_up_date, min: Date.today, max: @max_date %>
+		</div>
+
+		<div class="field">
+		    <%= form.label :pick_up_time%>
+		    <%= form.time_select :pick_up_time, :date => order.pick_up_date, ampm: true, start_hour: 17, end_hour: 22, minute_step: 30 %>
+		</div>
+
+		<div class="actions">
+		    <%= form.submit %>
+		</div>
+
+	<%end%>

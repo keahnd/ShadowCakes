@@ -1,0 +1,130 @@
+<div id="cart">
+  <%= render 'cart/cart'%>
+</div>
+
+<div class = "product-container">
+  <div class = "left">
+    <div class = "product-photo">
+      <figure class="figure">
+        <img src="/<%= @product.name%>.jpg" style="height: 500px;" class="img-thumbnail mh-50 img-fluid img-responsive" alt="...">
+      </figure>
+    </div>
+  </div>
+
+  <div class = "right">
+    <div class = "product-details">
+      <h1 itemprop = "name" margin:0px class="product-name"><%=@product.name%> </h1>
+      <br/>
+      <span class = "product-price"> <%= number_to_currency(@product.price)%> </span>
+      <br/><br/>
+      <div class = "product-description" style="width: 400px;">
+        <h4 class="product-description-text"> <%= @product.description %> </h4>
+      </div>
+      <div class = "product-average-review" >
+        <h6 class="product-average-review-text"> Average Rating : <%= @average_review %> </h6>
+      </div>
+    </div>
+    <br/><br/>
+    <div class = "cart-info">
+      <% if @product.sold_out == false %>
+        <%= form_for @order_item, class:"form-group", remote: true  do |f|%>
+          <%= f.hidden_field :product_id, value: @product.id %>
+          <%= f.number_field :quantity, class:"form-control", value: 1, min: 1%>
+          <br/><br/>
+          <%= f.submit "Add to Cart", class:'btn btn-primary', id:"addToCart", remote: true %>
+        <% end %>
+      <% else %>
+        <%= link_to "Sold Out", "", class:'btn btn-secondary' %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class = "product-dropdown">
+    <div class="accordion" id="product-dropdown">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Ingredients
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <%if @product.ingredients.nil? %>
+              <p> Ingredients go here </p>
+            <%else%>
+              <p><%= @product.ingredients %></p>
+            <%end%>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+           Portion Size
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            Order three to feed threee etc. etc. etc.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+           Dietary Restrictions
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p>
+              <% if @product.gluten_free %>
+                Gluten Free!
+              <% else %>
+                Contains Gluten.
+              <%end%>
+            </p>
+
+            <p>
+              <% if @product.dairy_free %>
+                Dairy Free!
+              <% else %>
+                Contains Dairy.
+              <%end%>
+            </p>
+
+            <p>
+              <% if @product.contains_peanuts %>
+                Contains peanuts.
+              <% else %>
+                Peanut Free!
+              <%end%>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class = 'product-review-container'>
+    <h2 class="review-title"> Product Reviews </h2>
+
+    <%= render @product.reviews %>
+
+    <%= link_to "Add Review", new_review_path %>
+  </div>
+</div>
+
+<br/>
+
+<%= link_to 'Back to Menu', menu_path, class:"btn btn-secondary" %>
+
+<script>
+   $("#addToCart").click(function() {
+      alert("The item has been added to your cart.");
+      @displayAlert = true;
+   });
+</script>

@@ -1,0 +1,12 @@
+<div class="card border-info text-center">
+	<div class="card-header">
+	    <% @user = User.find_by_id(review.user_id) %>
+	    Review by: <%= @user.first_name %> <%= @user.last_name %>
+  	</div>
+  	<%if @page = 'reviews'%>
+	  <div class="card-body">
+	    <h5 class="card-title">Rating: <%= review.rating%>/5</h5>
+	    <p class="card-text"><%= review.comment %></p>
+	  </div>
+	<%end%>
+</div>

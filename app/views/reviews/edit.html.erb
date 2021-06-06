@@ -1,0 +1,10 @@
+<h1>Editing Review</h1>
+
+<% if current_user.id == @review.user_id %>
+
+	<%= render 'form', review: @review %>
+
+	<%= link_to 'Show', @review %> |
+	<%= link_to 'Back', reviews_path %>
+<%end%>
+

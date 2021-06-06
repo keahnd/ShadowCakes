@@ -1,0 +1,67 @@
+<%= form_with(model: order) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+        <% order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :id %>
+    <%= form.text_field :id, value: @order.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, value: @order.first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, value: @order.last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subtotal %>
+    <%= form.text_field :subtotal, value: @order.subtotal  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, value: @order.user_id  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, value: @order.email  %>
+  </div>
+
+  <div class="field">
+    <%= form.check_box(:payment_completed) %>
+    <%= form.label(:payment_completed, "Payment Confirmed?") %>
+  </div>
+
+  <div class="field">
+    <%= form.check_box(:payment_reminder) %>
+    <%= form.label(:payment_reminder, "Reminder Sent") %>
+  </div>
+
+  <div class="field">
+    <%= form.check_box(:order_delete_reminder) %>
+    <%= form.label(:order_delete_reminder, "Order delete sent") %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, options_for_select(['Select Status', 'Cart', 'Open', 'Ready for Pick Up', 'Completed']), {},  {class: "form form-group form-select"}   %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
