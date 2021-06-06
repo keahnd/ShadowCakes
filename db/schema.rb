@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_081314) do
+ActiveRecord::Schema.define(version: 2021_06_06_071738) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -93,6 +96,9 @@ ActiveRecord::Schema.define(version: 2021_05_02_081314) do
     t.integer "category_id"
     t.boolean "sold_out", default: false
     t.text "ingredients", default: ""
+    t.boolean "mult_size", default: false
+    t.text "sizes", default: [], array: true
+    t.decimal "priceDiff", default: [], array: true
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 

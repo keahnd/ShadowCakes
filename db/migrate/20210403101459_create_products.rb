@@ -1,7 +1,7 @@
 class CreateProducts < ActiveRecord::Migration[6.1]
   def change
     create_table :products do |t|
-      t.string :name,               default: ''
+      t.text :name,               default: ''
       t.text :description,          default: ''
       t.decimal :price,             default: 0.0
       t.boolean :gluten_free,       default: false
