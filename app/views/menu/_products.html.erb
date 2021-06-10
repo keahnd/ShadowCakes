@@ -16,16 +16,28 @@
 					  			</div>
 						  		<div class="card-body">
 								    <h5 class="card-title"><%= product.name %></h5>
-								    <span><%= number_to_currency(product.price)%> </span>
-								    <br/>
+								    <h6><%= number_to_currency(product.price)%> </h6>
 						  		</div>
-								<%= form_for @order_item, class:'form-group', remote: true  do |f|%>
-									<%= f.hidden_field :product_id, value: product.id %>
-									<%= f.number_field :quantity, value: 1, min: 1, class:"form-control" %>
-									<br/>
-									<%= f.submit "Add to Cart", class:'btn btn-primary', remote: true %>
-									<%= link_to "View", product, class:"btn btn-secondary" %>
-								<% end %>
+						  		<div class = "MenuCardForm">
+									<%= form_for @order_item, class:'form-group', remote: true  do |f|%>
+										<div class = "row row-cols-1 row-cols-md-3 g-4">
+											<div class = "cols">
+												<%= f.hidden_field :product_id, value: product.id %>
+												<%= f.label :quantity, "Quantity" %>
+												<%= f.number_field :quantity, value: 1, min: 1, class:"form-control" %>
+												<br/>
+											</div>
+											<div class = "cols">
+												<% if product.mult_size %>
+												    <%= f.label :diffSize, "Size" %>
+									              	<%= f.select :diffSize, product.sizes, {}, prompt: 'Select Your Size', class:'form-select' %>
+									          	<%end%>
+									        </div>						          	
+										</div>
+										<%= f.submit "Add to Cart", class:'btn btn-primary', remote: true %>
+										<%= link_to "View", product, class:"btn btn-secondary" %>
+									<% end %>
+								</div>
 							</div>
 						<% else %>
 							<div class="card mb-3 text-white bg-secondary" style="max-width: 540px;">

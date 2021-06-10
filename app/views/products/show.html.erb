@@ -2,11 +2,19 @@
   <%= render 'cart/cart'%>
 </div>
 
+<script>
+  function check() {
+      alert("Prices vary according to size");
+      document.getElementById("hidden_price_field").value = ($("#sizeDropdown").prop('selectedIndex'));
+      var index = ($("#sizeDropdown").prop('selectedIndex'));
+    }
+</script>
+
 <div class = "product-container">
   <div class = "left">
     <div class = "product-photo">
       <figure class="figure">
-        <img src="/<%= @product.name%>.jpg" style="height: 500px;" class="img-thumbnail mh-50 img-fluid img-responsive" alt="...">
+        <img src="/<%= @product.name%>.jpg"  class="img-thumbnail img-fluid img-responsive contain" alt="...">
       </figure>
     </div>
   </div>
@@ -16,6 +24,8 @@
       <h1 itemprop = "name" margin:0px class="product-name"><%=@product.name%> </h1>
       <br/>
       <span class = "product-price"> <%= number_to_currency(@product.price)%> </span>
+      <input type="text" id="hidden_price_field" >
+      <input class="form-control" type="text" placeholder="Additional Charges" aria-label="Disabled input example" disabled id="priceField" >
       <br/><br/>
       <div class = "product-description" style="width: 400px;">
         <h4 class="product-description-text"> <%= @product.description %> </h4>
@@ -24,13 +34,17 @@
         <h6 class="product-average-review-text"> Average Rating : <%= @average_review %> </h6>
       </div>
     </div>
-    <br/><br/>
+    <br/>
     <div class = "cart-info">
       <% if @product.sold_out == false %>
         <%= form_for @order_item, class:"form-group", remote: true  do |f|%>
+          <% if @product.mult_size %>
+              <%= f.label :diffSize, "Select Your Size" %>
+              <%= f.select :diffSize, @product.sizes, {}, prompt: 'Select Your Size', class:'form-select', id: "sizeDropdown", onchange: "check()" %>
+          <%end%>
           <%= f.hidden_field :product_id, value: @product.id %>
           <%= f.number_field :quantity, class:"form-control", value: 1, min: 1%>
-          <br/><br/>
+          <br/>
           <%= f.submit "Add to Cart", class:'btn btn-primary', id:"addToCart", remote: true %>
         <% end %>
       <% else %>

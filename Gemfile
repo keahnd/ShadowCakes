@@ -15,6 +15,7 @@ gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'jquery-rails', '~> 4.4'
 gem "figaro"
 gem 'whenever', '~> 1.0'
+gem 'simple_form'
 gem "roo", "~> 2.8.0"
 
 group :development, :test do

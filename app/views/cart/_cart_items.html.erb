@@ -5,6 +5,7 @@
 		        <tr>
 		          <th>Product Name</th>
 		          <th>Price</th>
+		          <th>Size</th>
 		          <th>Quantity</th>
 		          <th>Item Subtotal</th>
 		        </tr>
@@ -16,6 +17,11 @@
 						<td><%= number_to_currency(item.product.price) %> </td>
 						<td>
 							<%= form_for item, remote: true do |f| %>
+								<% if item.product.mult_size %>
+						            <%= f.select :diffSize, item.product.sizes, {}, prompt: 'Select Your Size', class:'form-select' %>
+						        <%end%>
+						</td>
+						<td>
 								<%= f.hidden_field :product_id, value: item.product.id %>
 								<%= f.number_field :quantity, value: item.quantity.to_i %>
 								<%= f.submit "Update Cart", class:"btn btn-secondary" %>
