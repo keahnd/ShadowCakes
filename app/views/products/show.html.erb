@@ -7,6 +7,10 @@
       alert("Prices vary according to size");
       document.getElementById("hidden_price_field").value = ($("#sizeDropdown").prop('selectedIndex'));
       var index = ($("#sizeDropdown").prop('selectedIndex'));
+      var arr = new Array(<%= @product.priceDiff.map(&:to_s).join(", ") %>);
+      var addCost = arr[index];
+      document.getElementById("priceField").innerHTML = "+ $"+ addCost;
+      console.log(addCost);
     }
 </script>
 
@@ -25,11 +29,11 @@
       <br/>
       <span class = "product-price"> <%= number_to_currency(@product.price)%> </span>
       <input type="text" id="hidden_price_field" >
-      <input class="form-control" type="text" placeholder="Additional Charges" aria-label="Disabled input example" disabled id="priceField" >
-      <br/><br/>
+      <p id="priceField"></p>
       <div class = "product-description" style="width: 400px;">
         <h4 class="product-description-text"> <%= @product.description %> </h4>
       </div>
+      <br/>
       <div class = "product-average-review" >
         <h6 class="product-average-review-text"> Average Rating : <%= @average_review %> </h6>
       </div>
@@ -43,7 +47,8 @@
               <%= f.select :diffSize, @product.sizes, {}, prompt: 'Select Your Size', class:'form-select', id: "sizeDropdown", onchange: "check()" %>
           <%end%>
           <%= f.hidden_field :product_id, value: @product.id %>
-          <%= f.number_field :quantity, class:"form-control", value: 1, min: 1%>
+          <%= f.label :diffSize, "Quantity" %>
+          <%= f.number_field :quantity, prompt: "Quantity", class:"form-control", value: 1, min: 1%>
           <br/>
           <%= f.submit "Add to Cart", class:'btn btn-primary', id:"addToCart", remote: true %>
         <% end %>

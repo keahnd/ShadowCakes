@@ -7,5 +7,6 @@ class Product < ApplicationRecord
 
 	def remove_blank_sizes
 	  sizes.reject!(&:blank?)
+	  priceDiff.reject!(&:blank?)
 	end
 end
