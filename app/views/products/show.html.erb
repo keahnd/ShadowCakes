@@ -10,6 +10,7 @@
       var arr = new Array(<%= @product.priceDiff.map(&:to_s).join(", ") %>);
       var addCost = arr[index];
       document.getElementById("priceField").innerHTML = "+ $"+ addCost;
+      document.getElementById("additionalCost").value = addCost;
       console.log(addCost);
     }
 </script>
@@ -28,7 +29,7 @@
       <h1 itemprop = "name" margin:0px class="product-name"><%=@product.name%> </h1>
       <br/>
       <span class = "product-price"> <%= number_to_currency(@product.price)%> </span>
-      <input type="text" id="hidden_price_field" >
+      <input type="hidden" id="hidden_price_field" >
       <p id="priceField"></p>
       <div class = "product-description" style="width: 400px;">
         <h4 class="product-description-text"> <%= @product.description %> </h4>
@@ -47,6 +48,7 @@
               <%= f.select :diffSize, @product.sizes, {}, prompt: 'Select Your Size', class:'form-select', id: "sizeDropdown", onchange: "check()" %>
           <%end%>
           <%= f.hidden_field :product_id, value: @product.id %>
+          <%= f.number_field :priceDiff, id: "additionalCost" %>
           <%= f.label :diffSize, "Quantity" %>
           <%= f.number_field :quantity, prompt: "Quantity", class:"form-control", value: 1, min: 1%>
           <br/>

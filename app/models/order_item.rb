@@ -13,7 +13,7 @@ class OrderItem < ApplicationRecord
   end
 
   def total
-  	return unit_price * quantity
+  	return (unit_price + priceDiff) * quantity
   end
 
   private
