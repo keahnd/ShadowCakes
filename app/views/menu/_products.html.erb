@@ -7,59 +7,43 @@
 			<br/>
 			<div class="row row-cols-1 row-cols-md-3 g-4">
 				<% @products.each do |product| %>
-				<% if product.category == cat %>
-					<div class="col">
-						<% if product.sold_out == false %>
-							<div class="card h-100" style="max-width: 540px;">
-								<div class = "product-image">
-					  				<img class = "contain" src="/<%= product.name%>.jpg" class="img-thumbnail img-responsive img-fluid" alt="...">
-					  			</div>
-						  		<div class="card-body">
-								    <h5 class="card-title"><%= product.name %></h5>
-								    <h6><%= number_to_currency(product.price)%> </h6>
-						  		</div>
-						  		<div class = "MenuCardForm">
-									<%= form_for @order_item, class:'form-group', remote: true  do |f|%>
-										<div class = "row row-cols-1 row-cols-md-3 g-4">
-											<div class = "cols">
-												<%= f.hidden_field :product_id, value: product.id %>
-												<%= f.label :quantity, "Quantity" %>
-												<%= f.number_field :quantity, value: 1, min: 1, class:"form-control" %>
-												<br/>
-											</div>
-											<div class = "cols">
-												<% if product.mult_size %>
-												    <%= f.label :diffSize, "Size" %>
-									              	<%= f.select :diffSize, product.sizes, {}, prompt: 'Select Your Size', class:'form-select' %>
-									          	<%end%>
-									        </div>						          	
-										</div>
-										<%= f.submit "Add to Cart", class:'btn btn-primary', remote: true %>
-										<%= link_to "View", product, class:"btn btn-secondary" %>
-									<% end %>
+					<% if product.category == cat %>
+						<div class="col">
+							<% if product.sold_out == false %>
+								<%= link_to product, class:"class", id:"id" do %>
+									<div class="card h-100" style="max-width: 540px; text-decoration:none;" id="id">
+										<div class = "product-image">
+							  				<img class = "contain" src="/<%= product.name%>.jpg" class="img-thumbnail img-responsive img-fluid" alt="...">
+							  			</div>
+								  		<div class="card-body">
+										    <h5 class="card-title"><%= product.name %></h5>
+										    <h6><%= number_to_currency(product.price)%> </h6>
+										    <input type="hidden" id="hidden_price_field" >
+										    <p id="priceField"></p>
+								  		</div>
+									</div>
+								<% end %>
+							<% else %>
+								<div class="card mb-3 text-white bg-secondary" style="max-width: 540px;">
+								    <div class = "product-image">
+						  				<img src="/<%= product.name%>.jpg" class="img-thumbnail img-responsive img-fluid" alt="...">
+						  			</div>
+								    <div class="card-body">
+									    <h5 class="card-title"><%= product.name %></h5>
+									    <span><%= product.price %> </span>
+									    <br/>
+							  		</div>
+							  		<%= form_for @order_item, class:'form-group', remote: true  do |f|%>
+										<%= f.hidden_field :product_id, value: product.id %>
+									<%end%>
+									<div class = 'text-center'>
+										<p> Sold Out </p><br/>
+									</div>
+									<%= link_to "View", product, class:"btn btn-primary" %>
 								</div>
-							</div>
-						<% else %>
-							<div class="card mb-3 text-white bg-secondary" style="max-width: 540px;">
-							    <div class = "product-image">
-					  				<img src="/<%= product.name%>.jpg" class="img-thumbnail img-responsive img-fluid" alt="...">
-					  			</div>
-							    <div class="card-body">
-								    <h5 class="card-title"><%= product.name %></h5>
-								    <span><%= product.price %> </span>
-								    <br/>
-						  		</div>
-						  		<%= form_for @order_item, class:'form-group', remote: true  do |f|%>
-									<%= f.hidden_field :product_id, value: product.id %>
-								<%end%>
-								<div class = 'text-center'>
-									<p> Sold Out </p><br/>
-								</div>
-								<%= link_to "View", product, class:"btn btn-primary" %>
-							</div>
-						<%end%>
-					</div>
-				<% end %>
+							<%end%>
+						</div>
+					<% end %>
 				<% end %>
 			</div>
 		</div>

@@ -4,6 +4,7 @@
 
 <script>
   function check() {
+    if (<%= @product.mult_size %>){
       alert("Prices vary according to size");
       document.getElementById("hidden_price_field").value = ($("#sizeDropdown").prop('selectedIndex'));
       var index = ($("#sizeDropdown").prop('selectedIndex'));
@@ -13,6 +14,7 @@
       document.getElementById("additionalCost").value = addCost;
       console.log(addCost);
     }
+  }
 </script>
 
 <div class = "product-container">
@@ -48,7 +50,7 @@
               <%= f.select :diffSize, @product.sizes, {}, prompt: 'Select Your Size', class:'form-select', id: "sizeDropdown", onchange: "check()" %>
           <%end%>
           <%= f.hidden_field :product_id, value: @product.id %>
-          <%= f.number_field :priceDiff, id: "additionalCost" %>
+          <%= f.hidden_field :priceDiff, id: "additionalCost" %>
           <%= f.label :diffSize, "Quantity" %>
           <%= f.number_field :quantity, prompt: "Quantity", class:"form-control", value: 1, min: 1%>
           <br/>

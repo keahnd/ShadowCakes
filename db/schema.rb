@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 2021_06_07_054004) do
     t.decimal "unit_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "diffSize"
-    t.decimal "priceDiff"
+    t.text "diffSize", default: ""
+    t.decimal "priceDiff", default: "0.0"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end

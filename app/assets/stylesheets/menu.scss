@@ -7,7 +7,29 @@
     height: 280px;
 }
 
-.MenuCardForm {
-	margin-left: 10px;
-	margin-bottom: 5px;
+.id a {
+   color: #000;
+   text-decoration: none;
+   border-bottom-style: none;
+}
+
+a:hover, a:visited, a:link, a:active {
+
+	color: #000;
+    text-decoration: none!important;
+
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+}
+
+.card-body{
+	background-color: #6F8AB7;
+}
+
+.card h-100{
+	background-color: #6F8AB7;
+}
+
+.product-image{
+	background-color: #6F8AB7;
 }
