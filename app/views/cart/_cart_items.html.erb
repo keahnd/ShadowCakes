@@ -1,44 +1,36 @@
+<h1>Your Cart</h1>
+
 <div class="cart-container">
 	<% if !(@order_items.nil?) %>
-		<table class = "table">
-	    	<thead>
-		        <tr>
-		          <th>Product Name</th>
-		          <th>Price</th>
-		          <th>Size</th>
-		          <th>Additional Charges</th>
-		          <th>Quantity</th>
-		          <th>Item Subtotal</th>
-		        </tr>
-	    	</thead>
-	      	<tbody>
-				<% @order_items.each do |item| %>
-					<tr>
-						<td><%= item.product.name %> </td>
-						<td><%= number_to_currency(item.product.price) %> </td>
-						<td><%= item.diffSize %> </td>
-						<td><%= number_to_currency(item.priceDiff) %></td>
-
-						<td><%= number_to_currency(item.total) %> </td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-
 		<% @order_items.each do |item| %>
-			<%= form_for item, remote: true do |f| %>
-				<%= f.hidden_field :product_id, value: item.product.id %>
-				<%= f.number_field :quantity, value: item.quantity.to_i %>
-				<%= f.submit "Update Cart", class:"btn btn-secondary" %>
-				<%= link_to "Remove Item", item, remote: true, method: :delete, class:"btn btn-danger" %>
-			<% end %>
-		<%end%>
+			<div class = "cart"> 
+				<h4>Item: <%= item.product.name%></h4><br/>
+				<h4>Size: <%= item.diffSize %></h4><br/>
+				<h4>Price: <%= number_to_currency(item.product.price) %> &emsp; Addition Charges: <%= number_to_currency(item.priceDiff) %></h4><br/>
+				<%= form_for item, remote: true do |f| %>
+						<%= f.hidden_field :product_id, value: item.product.id %>
+						<h4><%= f.label :quantity, "Quantity:" %>
+						<%= f.number_field :quantity, value: item.quantity.to_i %>
+						<%= f.submit "Update Cart", class:"btn btn-secondary" %>
+						<%= link_to "Remove Item", item, remote: true, method: :delete, class:"btn btn-danger" %></h4><br/>
+					<% end %>
+				<h4>Item Subtotal: <%= number_to_currency(item.total) %></h4> 
+			</div>
+			<div class = "product-photo-cart">
+		    	<figure class="figure">
+		    		<img src="/<%= item.product.name%>.jpg"  class="img-thumbnail img-fluid img-responsive contain" alt="...">
+		    	</figure>
+		    </div>
+			<hr size="5" width="100%" color="black">
+		<% end %>
 
 		<div class="order-total-container">
 			<h2>Current Order Total: <%= number_to_currency(current_order.subtotal) %> </h2>
 
 			<%= link_to 'Confirm Order', checkout_path, class:"btn btn-primary" %>
-			<br/>
 		</div>
+	<% else %>
+		<h2> Your Cart is Empty </h2>
 	<% end %>
 </div>
+

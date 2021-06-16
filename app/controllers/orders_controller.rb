@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy]
 
   def new
+    @page = 'checkout-form'
     @all_orders = Order.all
     @order = current_order
     @order.user_id = current_user.id
@@ -91,6 +92,7 @@ class OrdersController < ApplicationController
     @order.email = current_user.email
 
     if @order.update!(order_params.merge(status: 'open'))
+      flash[:notice] = "Payment for order has been processed."
       session[:order_id] = nil
       redirect_to send_order_mail_path
     else

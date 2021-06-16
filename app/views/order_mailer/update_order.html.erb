@@ -44,6 +44,7 @@
             <tr>
               <th>Product</th>
               <th>Unit Price</th>
+              <th>Size</th>
               <th>Quantity</th>
               <th>Item Total</th>
               <th colspan="3"></th>
@@ -55,13 +56,14 @@
             <tr>
                 <td><%= item.product.name %> </td>
                 <td><%= item.product.price %> </td>
+                <td><%= item.diffSize %></td>
                 <td><%= item.quantity %> </td>
                 <td><%= item.total %> </td>
 
             <% end %>
             </tr>
-          </tbody>
-        </table>
+        </tbody>
+    </table>
             
 
 

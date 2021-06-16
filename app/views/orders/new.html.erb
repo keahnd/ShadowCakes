@@ -1,62 +1,62 @@
 <h1>Checkout</h1>
 
-<%= form_for @order, url: checkout_path do |f| %>
-	<div class = "form-group">
-    	<%= f.hidden_field :first_name, value: current_user.first_name %>
+<div class= "checkout">
+	<div class = "checkout-form">
+		<%= form_for @order, remote: true, url: checkout_path do |f| %>
+			<div class = "form-group">
+		    	<%= f.hidden_field :first_name, value: current_user.first_name %>
+			</div>
+
+			<div class = "form-group">
+		    	<%= f.hidden_field :last_name, value: current_user.last_name %>
+			</div>
+
+		  	<div class = "form-group">
+				<%= f.hidden_field :user_id, value: current_user.id %>
+			</div>
+
+			<div class = "form-group">
+				<%= f.hidden_field :email, value: current_user.email %>
+			</div>
+
+			<div class = "form-group">
+				<%= f.hidden_field :payment_reminder, value: false %>
+			</div>
+
+			<div class = "form-group">
+				<%= f.hidden_field :client_id, value: current_user.id %>
+			</div>
+
+			<div class = "form-group">
+		    	<%= f.hidden_field :payment_completed, value: false %>
+			</div>
+
+			<div class = "form-group">
+		    	<%= f.hidden_field :order_delete_reminder, value: false %>
+			</div>
+
+			<div class="field">
+			    <%= f.label :pick_up_date%>
+			    <%= f.date_field :pick_up_date, min: Date.today + 3.days %>
+			</div><br/>
+
+			<div class="field">
+			    <%= f.label :pick_up_time%>
+			    <%= f.time_select :pick_up_time, :date => @order.pick_up_date, ampm: true, start_hour: 17, end_hour: 22, minute_step: 30 %>
+			</div><br/>
+
+			<div class="field">
+				<%= f.label :note, "Note:" %>
+				<%= f.text_area :note, placeholder: "Would you like to add a note to your order?", style: 'width:75%;', rows: 2  %>
+			</div>
+
+			<div class="card" style="width: 50rem;">
+			 	<div class="card-body">
+				    <h5 class="card-title">Payment</h5>
+				    <p class="card-text">Please complete your payment of <%= number_to_currency(@order.subtotal) %> via an interac transfer to: arizadivecha@gmail.com. Please complete this payment as soon as possible. If you have not completed the paymnt within 12 hours we will send you a reminder via email. If you still have not completed the payment within 24 hours of placing your order, your order will be cancelled.</p>
+			  	</div>
+			</div><br/>
+			<%= f.submit 'Confirm', class: "btn btn-primary" %>
+		<% end %>
 	</div>
-
-	<div class = "form-group">
-    	<%= f.hidden_field :last_name, value: current_user.last_name %>
-	</div>
-
-  	<div class = "form-group">
-		<%= f.hidden_field :user_id, value: current_user.id %>
-	</div>
-
-	<div class = "form-group">
-		<%= f.hidden_field :email, value: current_user.email %>
-	</div>
-
-	<div class = "form-group">
-		<%= f.hidden_field :payment_reminder, value: false %>
-	</div>
-
-	<div class = "form-group">
-		<%= f.hidden_field :client_id, value: current_user.id %>
-	</div>
-
-	<div class = "form-group">
-    	<%= f.hidden_field :payment_completed, value: false %>
-	</div>
-
-	<div class = "form-group">
-    	<%= f.hidden_field :order_delete_reminder, value: false %>
-	</div>
-
-	<div class="field">
-	    <%= f.label :pick_up_date%>
-	    <%= f.date_field :pick_up_date, min: Date.today + 3.days %>
-	</div>
-
-	<div class="field">
-	    <%= f.label :pick_up_time%>
-	    <%= f.time_select :pick_up_time, :date => @order.pick_up_date, ampm: true, start_hour: 17, end_hour: 22, minute_step: 30 %>
-	</div>
-
-	<div class="field">
-		<%= f.label :note %>
-		<%= f.text_area :note, placeholder: "Would you like to add a note to your order?" %>
-	</div>
-
-	<div class="card" style="width: 50rem;">
-	 	<div class="card-body">
-		    <h5 class="card-title">Payment</h5>
-		    <p class="card-text">Please complete your payment of <%= @order.subtotal %> via an interac transfer to: arizadivecha@gmail.com. Please complete this payment as soon as possible. If you have not completed the paymnt within 12 hours we will send you a reminder via email. If you still have not completed the payment within 24 hours of placing your order, your order will be cancelled.</p>
-	  	</div>
-	</div>
-
-
-
-	<%= f.submit 'Confirm'%>
-
-<% end %>
+</div>
