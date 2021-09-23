@@ -17,7 +17,7 @@ class CartController < ApplicationController
 	  @user = current_user
 
 	  OrderMailer.new_order(@order, @user).deliver
-	  flash[:notice] = "Order has been sent."
+	  flash[:success] = "Order Confirmed."
 	  redirect_to menu_path
 	end
 

@@ -58,7 +58,7 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.select :status, options_for_select(['Select Status', 'Cart', 'Open', 'Ready for Pick Up', 'Completed']), {},  {class: "form form-group form-select"}   %>
+    <%= form.select :status, options_for_select(['Cart', 'Open', 'Ready for Pick Up', 'Completed']), class: "form-select", include_blank: @order.status   %>
   </div>
 
   <div class="actions">

@@ -9,7 +9,13 @@
     </p>
     <p>
         <% if @order.status == 'Ready for Pick Up' %>
-            <h2> Your Order is Ready! Please come collect at <%= @order.pick_up_time.hour %>:<%= @order.pick_up_time.min %>. At the following address:
+            <h2> Your Order is Ready! Please come collect on <%= @order.pick_up_date %> at 
+                <% if @order.pick_up_time.min == 0%> 
+                    <%= @order.pick_up_time.hour %>:00
+                <%else%>
+                    <%= @order.pick_up_time.hour %>:<%=order.pick_up_time.min %>
+                <%end%>
+                . At the following address:
             2302 West 33rd Ave, Vancouver BC V6M 1C3</h2>
         <%end%>
     </p>
@@ -35,7 +41,7 @@
             <td><%= @order.id %></td>
             <td><%= @order.first_name %> <%= @order.last_name %></td>
             <td><%= @order.status%></td>
-            <td><%= @order.subtotal%></td>
+            <td><%= number_to_currency(@order.subtotal)%></td>
         </tr>
       </tbody>
     </table>
@@ -55,18 +61,14 @@
             <% @order_items.each do |item| %>
             <tr>
                 <td><%= item.product.name %> </td>
-                <td><%= item.product.price %> </td>
+                <td><%= number_to_currency(item.product.price) %> </td>
                 <td><%= item.diffSize %></td>
                 <td><%= item.quantity %> </td>
-                <td><%= item.total %> </td>
+                <td><%= number_to_currency(item.total) %> </td>
 
             <% end %>
             </tr>
         </tbody>
     </table>
-            
-
-
-        <h2>Current Order Total: <%= @order.subtotal %> </h2>
     </p>
   </body>

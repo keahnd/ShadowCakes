@@ -42,17 +42,14 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        if @order.payment_completed == true
-          format.html { OrderMailer.payment_completed(@order, @order.user_id).deliver
-          flash[:notice] = "Payment for order has been processed."
-          redirect_to orders_path }
-        elsif @order.status == "Ready for Pick Up" && (@order.pick_up_date.nil?)
+        if @order.status == "Ready for Pick Up" && (!@order.pick_up_date.nil?)
           format.html { OrderMailer.update_order(@order, @order.user_id).deliver
           flash[:notice] = "Order has been updated."
           redirect_to orders_path }
-        elsif !(@order.pick_up_date.nil?)
-          format.html { OrderMailer.pick_up_order(@order, @order.user_id).deliver
-          flash[:notice] = "Pick Up time has been set."
+        end
+        if @order.payment_completed == true
+          format.html { OrderMailer.payment_completed(@order, @order.user_id).deliver
+          flash[:notice] = "Payment for order has been processed."
           redirect_to orders_path }
         else
           format.html { redirect_to @order, notice: "Order was successfully updated." }

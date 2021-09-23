@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
 	def index
 		@page = 'menu';
+		@user = current_user 
 		@orders = Order.all
 	end
 

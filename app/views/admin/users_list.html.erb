@@ -1,0 +1,19 @@
+<% if current_user.admin? %>
+<table class = "table">
+    <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email ID</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+  	        <tr>
+  	            <td><%= user.first_name %> <%=user.last_name %></td>
+  	            <td><%= user.email %></td>
+  	        </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>

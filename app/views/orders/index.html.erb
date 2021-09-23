@@ -7,7 +7,6 @@
           <th>Name</th>
           <th>Status</th>
           <th>Total Cost</th>
-          <th>User Id</th>
           <th>User Email</th>
           <th>Created At</th>
           <th>Payment Completed</th>
@@ -24,14 +23,12 @@
   	            <td><%= order.id %></td>
   	            <td><%= order.first_name %> <%= order.last_name %></td>
   	            <td><%= order.status%></td>
-                <td><%= order.subtotal%></td>
-  	            <td><%= order.user_id%></td>
+                <td><%= number_to_currency(order.subtotal) %></td>
   	            <td><%= order.email %></td>
                 <td><%= order.created_at %></td>
                 <td><%= order.payment_completed %>
-                    <%= ((Time.now - order.created_at)/1.hour).round %> <br/>
                     <% if order.payment_completed == false && current_user.admin %>
-                      <%= link_to 'Send Payment Reminder', send_payment_reminder_path %>
+                      <br/><%= link_to 'Send Payment Reminder', send_payment_reminder_path %>
                     <%end%>
                 </td>
                 <td>
@@ -49,10 +46,11 @@
                 </td>	            
   	            <td><%= link_to 'Show', order %></td>
                 <% if current_user.admin? %>
-                  <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   <td><%= link_to 'Update', edit_order_path(order) %></td>
-                  
+                  <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
                 <%end%>
+
   	          </tr>
             <%end %>
           <%end%>

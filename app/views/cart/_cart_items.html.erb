@@ -4,17 +4,17 @@
 	<% if !(@order_items.nil?) %>
 		<% @order_items.each do |item| %>
 			<div class = "cart"> 
-				<h4>Item: <%= item.product.name%></h4><br/>
-				<h4>Size: <%= item.diffSize %></h4><br/>
-				<h4>Price: <%= number_to_currency(item.product.price) %> &emsp; Addition Charges: <%= number_to_currency(item.priceDiff) %></h4><br/>
+				<h5><strong>Item:</strong> <%= item.product.name%></h5><br/>
+				<h5><strong>Size:</strong> <%= item.diffSize %></h5><br/>
+				<h5><strong>Price:</strong> <%= number_to_currency(item.product.price) %> &emsp; <strong>Addition Charges:</strong> <%= number_to_currency(item.priceDiff) %></h5><br/>
 				<%= form_for item, remote: true do |f| %>
 						<%= f.hidden_field :product_id, value: item.product.id %>
-						<h4><%= f.label :quantity, "Quantity:" %>
+						<h5><strong><%= f.label :quantity, "Quantity:" %></strong>
 						<%= f.number_field :quantity, value: item.quantity.to_i %>
 						<%= f.submit "Update Cart", class:"btn btn-secondary" %>
-						<%= link_to "Remove Item", item, remote: true, method: :delete, class:"btn btn-danger" %></h4><br/>
+						<%= link_to "Remove Item", item, remote: true, method: :delete, class:"btn btn-danger" %></h5><br/>
 					<% end %>
-				<h4>Item Subtotal: <%= number_to_currency(item.total) %></h4> 
+				<h4><strong>Item Subtotal:</strong> <%= number_to_currency(item.total) %></h4> 
 			</div>
 			<div class = "product-photo-cart">
 		    	<figure class="figure">

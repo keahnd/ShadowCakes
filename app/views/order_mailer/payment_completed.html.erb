@@ -2,7 +2,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-  <p>Your Payment has been processed and your order is being prepared!</p>
+  <p>Your Payment has been processed and your order is being prepared!
+        Please come collect on <%= @order.pick_up_date %> at <%= @order.pick_up_time.hour %>:<%= @order.pick_up_time.min %>. At the following address:
+        2302 West 33rd Ave, Vancouver BC V6M 1C3</p>
   <p>
   Order details<br>
   --------------------------

@@ -1,18 +1,13 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-* {
-	font-family: 'Alegreya', serif;
-}
 
-.left {float:left;width:550px;}
-.right {float:left;margin:20px;width:215px;}
+.left {float:left;width:525px;}
+.right {float:left;margin:20px;width:400px;}
 
 .product-name{
 	color: #000;
 	text-align: center;
-	font-size: 3em;
-	text-transform: uppercase;
 }
 
 .products-page {

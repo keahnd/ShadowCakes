@@ -7,6 +7,11 @@
 		    	<%= f.hidden_field :first_name, value: current_user.first_name %>
 			</div>
 
+			<div class="form-group">
+				<%= f.label :id, "Order ID" %>
+				<%= f.text_field :id, class: "form-control", disabled: true %>
+			</div>
+
 			<div class = "form-group">
 		    	<%= f.hidden_field :last_name, value: current_user.last_name %>
 			</div>
@@ -33,7 +38,7 @@
 
 			<div class = "form-group">
 		    	<%= f.hidden_field :order_delete_reminder, value: false %>
-			</div>
+			</div><br/>
 
 			<div class="field">
 			    <%= f.label :pick_up_date%>
@@ -47,13 +52,15 @@
 
 			<div class="field">
 				<%= f.label :note, "Note:" %>
-				<%= f.text_area :note, placeholder: "Would you like to add a note to your order?", style: 'width:75%;', rows: 2  %>
-			</div>
+				<%= f.text_area :note, placeholder: "Would you like to add a note to your order?", style: 'width:75%;', rows: 1  %>
+			</div><br/>
 
 			<div class="card" style="width: 50rem;">
 			 	<div class="card-body">
 				    <h5 class="card-title">Payment</h5>
-				    <p class="card-text">Please complete your payment of <%= number_to_currency(@order.subtotal) %> via an interac transfer to: arizadivecha@gmail.com. Please complete this payment as soon as possible. If you have not completed the paymnt within 12 hours we will send you a reminder via email. If you still have not completed the payment within 24 hours of placing your order, your order will be cancelled.</p>
+				    <p class="card-text">Please complete your payment of <%= number_to_currency(@order.subtotal) %> via an interac transfer to: arizadivecha@gmail.com. In the optional message field for your interac transfer, please specify the order ID listed above.<br/><br/>
+
+				    If payment is not recieved within 24 hours of placing your order, your order will be cancelled.</p>
 			  	</div>
 			</div><br/>
 			<%= f.submit 'Confirm', class: "btn btn-primary" %>

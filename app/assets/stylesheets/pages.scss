@@ -1,5 +1,5 @@
 * {
-	font-family: 'Alegreya', serif;
+	font-family: 'Libre Baskerville', serif;
 }
 .page-container {
 	margin: 0px;
@@ -8,7 +8,11 @@
 }
 
 .title-card {
-	background-color: #EF798A;
+	background-color: #0000;
+}
+
+.page-title {
+	text-align: center;
 }
 
 .reviewsPage {
@@ -46,12 +50,13 @@
 	width: 100vw;
 	height: 100vh;
 	background-size: 100% 100%;
+	background-image: url("/background 1.jpg");
 }
 
 .cart-page {
 	width: 100%;
 	height: 100%;
-	background-image: url("/test-image.jpg");
+	background-image: url("/background 2.jpg");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
@@ -59,7 +64,7 @@
 .menu-page {
 	width: 100%;
 	height: 100%;
-	background-image: url("/test-image.jpg");
+	background-image: url("/background 1.jpg");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
@@ -67,7 +72,7 @@
 .products-page {
 	width: 100%;
 	height: 100%;
-	background-image: url("/test-image.jpg");
+	background-image: url("/background 1.jpg");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
@@ -85,7 +90,7 @@
 	box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
 	-webkit-box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
 	-moz-box-shadow: 6px 4px 10px 3px rgba(0,0,0,0.75);
-	background-color: #D14081;
+	background-color: #0000;
 	width: 100%;
 	padding: 2em;
 }
@@ -107,9 +112,10 @@
 	width: 100%;
 	height: 100%;
 	background-size: 100% 100%;
-	background-image: url("/test-image.jpg");
-	background-repeat: no-repeat;
+	background-image: url("/background 2.jpg");
+	background-repeat: repeat;
 	background-attachment: fixed;
+	background-position: cover;
 }
 
 .link-container {
