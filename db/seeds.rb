@@ -8,7 +8,3 @@
 
 User.create!(email: ENV["shadowsCakesEmail"], password: ENV["shadowsCakesAdminPass"],
 			 password_confirmation: ENV["shadowsCakesAdminPass"], admin: true)
-
-Category.create!(heading: "Brownie", body: "Its yum", display: true, id: 1)
-Category.create!(heading: "Cakes", body: "The Shadow kind", display: true, id:2)
-Category.create!(heading: "Cupcakes", body: "Little Ones", display: true, id:3)
