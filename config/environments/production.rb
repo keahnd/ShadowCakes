@@ -7,6 +7,8 @@ Rails.application.configure do
   config.cache_classes = true
 
   config.serve_static_assets = true
+  config.assets.compile = true
+  config.assets.digest = true
 
   Rails.application.routes.default_url_options[:host] = 'shadowscakes.herokuapp.com'
   config.action_mailer.delivery_method = :smtp
