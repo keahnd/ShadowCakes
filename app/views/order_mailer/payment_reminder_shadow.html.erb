@@ -2,7 +2,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>The order from <% if @user.first_name <%= @user.first_name %> <%= @user.last_name %> has still not been paid. Lets send them a reminder.Visit <%= link_to "Orders", orders_url %> to remind them to pay for their order.</p>
+    <p>The order from <%= @user.first_name %> <%= @user.last_name %> has still not been paid. Lets send them a reminder.Visit <%= link_to "Orders", orders_url %> to remind them to pay for their order.</p>
     <p>
     Order details<br>
     --------------------------
