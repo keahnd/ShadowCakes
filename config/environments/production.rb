@@ -6,6 +6,8 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
+  config.serve_static_assets = true
+
   Rails.application.routes.default_url_options[:host] = 'shadowscakes.herokuapp.com'
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
